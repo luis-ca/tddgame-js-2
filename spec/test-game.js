@@ -41,7 +41,7 @@ describe('Game', function() {
 
     it('changes roles when defence is sucessful', function() {
       player2.attack = sinon.spy();
-      player2.defend = sinon.stub().returns(true);
+      player2.defend = sinon.stub().returns(12);
 
       game.play();
 

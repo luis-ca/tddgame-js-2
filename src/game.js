@@ -14,11 +14,11 @@ Game.prototype.play = function() {
   var attackValue = this.attacker.attack(
     this.attackDie);
 
-  var defenderSucceeded = this.defender.defend(
+  var defenseValue = this.defender.defend(
     this.defenseDie,
     attackValue);
 
-  if (defenderSucceeded) {
+  if (defenseValue >= attackValue) {
     var player = this.attacker;
     this.attacker = this.defender;
     this.defender = player;

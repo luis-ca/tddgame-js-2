@@ -1,5 +1,6 @@
-function Player(life) {
+function Player(life, name) {
   this.life = life;
+  this.name = name;
 }
 
 Player.prototype.attack = function(die) {
@@ -14,7 +15,7 @@ Player.prototype.defend = function(die, attack) {
     this.life -= result;
   }
 
-  return !(result > 0);
+  return defense;
 }
 
 module.exports = Player;
