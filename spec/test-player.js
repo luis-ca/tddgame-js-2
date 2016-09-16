@@ -15,28 +15,28 @@ describe('Player', function() {
   });
 
   it('attacks with a die', function () {
-    Die.prototype.roll = sinon.spy();
+    die.roll = sinon.spy();
     p.attack(die);
 
-    expect(Die.prototype.roll.calledOnce).to.be.true;
+    expect(die.roll.calledOnce).to.be.true;
   });
 
   it('defends given an attack', function() {
-    Die.prototype.roll = sinon.spy();
+    die.roll = sinon.spy();
     p.defend(die, 3);
 
-    expect(Die.prototype.roll.calledOnce).to.be.true;
+    expect(die.roll.calledOnce).to.be.true;
   });
 
   it('debits life points when defend less than attack', function() {
-    Die.prototype.roll = sinon.stub().returns(2);
+    die.roll = sinon.stub().returns(2);
     p.defend(die, 5);
 
     expect(p.life).to.equal(7);
   });
 
   it('defends sucessfully when defend greater than attack', function() {
-    Die.prototype.roll = sinon.stub().returns(8);
+    die.roll = sinon.stub().returns(8);
 
     expect(p.defend(die, 5)).to.be.true;
     expect(p.life).to.equal(10);
