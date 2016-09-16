@@ -28,4 +28,11 @@ describe('Player', function() {
     expect(Die.prototype.roll.calledOnce).to.be.true;
   });
 
+  it('debits life points when defend less than attack', function() {
+    Die.prototype.roll = sinon.stub().returns(2);
+    p.defend(die, 5);
+
+    expect(p.life).to.equal(7);
+  });
+
 });
