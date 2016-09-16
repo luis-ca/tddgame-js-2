@@ -39,6 +39,30 @@ describe('Game', function() {
         .to.be.true;
     });
 
-  })
+    it('changes roles when defence is sucessful', function() {
+      player2.attack = sinon.spy();
+      player2.defend = sinon.stub().returns(true);
+
+      game.play();
+
+      expect(player2.attack.called).to.be.false;
+
+      game.play();
+
+      expect(player2.attack.called).to.be.true;
+    });
+
+  });
+
+  describe('on playAll', function() {
+
+    it('runs until one of the players perish', function() {
+      var winner = game.playAll();
+
+      expect(player1.life <= 0 || player2.life <= 0).to.be.true;
+      expect(winner.life > 0).to.be.true;
+    });
+
+  });
 
 });

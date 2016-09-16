@@ -17,6 +17,23 @@ Game.prototype.play = function() {
   var defenderSucceeded = this.defender.defend(
     this.defenseDie,
     attackValue);
+
+  if (defenderSucceeded) {
+    var player = this.attacker;
+    this.attacker = this.defender;
+    this.defender = player;
+  }
+};
+
+Game.prototype.playAll = function() {
+  while(this.attacker.life > 0
+    && this.defender.life > 0) {
+    this.play();
+  }
+
+  return (this.attacker.life > 0)
+    ? this.attacker
+    : this.defender;
 };
 
 module.exports = Game;
