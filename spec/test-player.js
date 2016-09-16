@@ -35,4 +35,11 @@ describe('Player', function() {
     expect(p.life).to.equal(7);
   });
 
+  it('defends sucessfully when defend greater than attack', function() {
+    Die.prototype.roll = sinon.stub().returns(8);
+
+    expect(p.defend(die, 5)).to.be.true;
+    expect(p.life).to.equal(10);
+  });
+
 });

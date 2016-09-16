@@ -13,6 +13,8 @@ Player.prototype.defend = function(die, attack) {
   if (result > 0) {
     this.life -= result;
   }
+
+  return !(result > 0);
 }
 
 module.exports = Player;
