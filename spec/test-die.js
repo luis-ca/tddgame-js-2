@@ -6,14 +6,18 @@ var Die = require('../src/die');
 describe('Dice', function() {
 
   var d = new Die(8);
+    originalRandom = Math.random;
+
+  afterEach(function() {
+    Math.random = originalRandom;
+  });
 
   it('has x number of sides', function (){
     expect(d.sides).to.equal(8);
   });
 
   it('has a roll function', function() {
-    var randomSpy = sinon.stub().returns(0.443);
-    Math.random = randomSpy;
+    Math.random = sinon.stub().returns(0.443);
 
     expect(d.roll()).to.equal(4);
   });
