@@ -7,13 +7,17 @@ var Die = require('../src/die');
 
 describe('Game', function() {
 
-  var player1, player2, game;
+  var attackDie = new Die(8),
+    defenseDie = new Die(12),
+    player1,
+    player2,
+    game;
 
   beforeEach(function () {
     player1 = new Player(10);
     player2 = new Player(10);
     game = new Game(player1, player2,
-      new Die(8), new Die(12));
+      attackDie, defenseDie);
   });
 
   describe('on play', function() {
@@ -23,6 +27,16 @@ describe('Game', function() {
       game.play();
 
       expect(player1.attack.called).to.be.true;
+    });
+
+    it('player2 defends attack', function() {
+      player1.attack = sinon.stub().returns(3);
+      player2.defend = sinon.spy();
+
+      game.play();
+
+      expect(player2.defend.calledWith(defenseDie, 3))
+        .to.be.true;
     });
 
   })

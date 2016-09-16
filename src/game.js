@@ -7,11 +7,16 @@ function Game(
   this.defender = player2;
 
   this.attackDie = attackDie;
-  this.attackDie = attackDie;
+  this.defenseDie = defenseDie;
 }
 
 Game.prototype.play = function() {
-  this.attacker.attack(this.attackDie);
+  var attackValue = this.attacker.attack(
+    this.attackDie);
+
+  var defenderSucceeded = this.defender.defend(
+    this.defenseDie,
+    attackValue);
 };
 
 module.exports = Game;
